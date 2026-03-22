@@ -1,209 +1,153 @@
 # Agent Skills Collection
 
-这是一个收集了多个Claude Code Skills的仓库，用于增强AI开发效率。
+面向 Claude Code 的 Skills 集合仓库，聚焦**文档自动化**与**项目深度分析**。
 
-## 📁 Skills 目录
+## 目录
 
-### daily-reporting
+- [仓库概览](#仓库概览)
+- [Skills 清单](#skills-清单)
+- [快速安装](#快速安装)
+- [使用示例](#使用示例)
+- [输出结构](#输出结构)
+- [贡献指南](#贡献指南)
 
-**文件**: `daily-reporting/daily-reporting.md`
+## 仓库概览
 
-**功能**: 自动生成项目日报markdown文档
-
-**用途**:
-- 生成项目日报
-- 记录工作进展
-- 汇报项目成果
-- 创建周报/月报
-
----
-
-### project-deep-analyzer
-
-**文件**: `project-deep-analyzer/SKILL.md`
-
-**功能**: 深度技术解析技能，用于快速理解并剖析任意项目或论文
-
-**用途**:
-- 分析 GitHub 仓库或本地项目
-- 生成结构化技术白皮书
-- 架构图（Mermaid）和代码深度解析
-- 专家级面试 Q&A
-
-**特性**:
-- 多源输入支持：GitHub 链接、本地项目路径、arXiv 论文链接
-- 智能文档生成：自动生成架构图、数学公式、代码解析
-- 灵活输出模式：单文件或模块化多文件输出
-- 专家视角分析：包含面试级 Q&A
-
----
-
-## 🚀 快速开始
-
-### 安装 Skill
-
-1. 将 skill 文件夹复制到你的 Claude skills 目录：
-
-**Windows**:
-```bash
-# 安装 daily-reporting
-copy daily-reporting\daily-reporting.md %USERPROFILE%\.claude\skills\
-
-# 安装 project-deep-analyzer
-xcopy /E /I project-deep-analyzer %USERPROFILE%\.claude\skills\project-deep-analyzer
+```text
+Agent_skills/
+├─ daily-reporting/
+│  └─ daily-reporting.md
+├─ project-deep-analyzer/
+│  ├─ SKILL.md
+│  ├─ references/
+│  ├─ examples/
+│  └─ scripts/
+└─ README.md
 ```
 
-**Linux/Mac**:
+## Skills 清单
+
+| Skill | 位置 | 核心能力 | 典型使用场景 |
+|---|---|---|---|
+| `daily-reporting` | `daily-reporting/daily-reporting.md` | 自动生成结构化日报/周报 | 日常研发汇报、阶段性复盘、成果沉淀 |
+| `project-deep-analyzer` | `project-deep-analyzer/SKILL.md` | 深度解析代码仓库/论文并产出技术白皮书 | 技术调研、架构梳理、面试准备、知识库建设 |
+
+### 1) daily-reporting
+
+- **定位**: 自动分析项目内容并生成 Markdown 日报文档。
+- **适用任务**:
+  - 生成项目日报
+  - 记录工作进展
+  - 汇报实施结果
+  - 形成周报/月报素材
+- **关键特点**:
+  - 自动读取项目目录中的脚本、数据、日志、配置
+  - 按固定结构生成可直接汇报的文档
+
+### 2) project-deep-analyzer
+
+- **定位**: 对项目/论文进行系统化技术深挖，输出结构化分析文档。
+- **适用任务**:
+  - GitHub 仓库解析
+  - 本地项目深度剖析
+  - 结合 arXiv 论文做“方法-代码”联动分析
+- **关键特点**:
+  - 支持 Mermaid 架构图、LaTeX 公式、逐行代码解析
+  - 支持单文件输出或模块化多文件输出
+  - 包含面试官视角 Q&A
+
+## 快速安装
+
+将本仓库中的 Skill 目录复制到 Claude Code Skills 目录（`~/.claude/skills/`）。
+
+### Windows
+
+```bash
+:: 安装 daily-reporting
+xcopy /E /I daily-reporting "%USERPROFILE%\.claude\skills\daily-reporting"
+
+:: 安装 project-deep-analyzer
+xcopy /E /I project-deep-analyzer "%USERPROFILE%\.claude\skills\project-deep-analyzer"
+```
+
+### Linux / macOS
+
 ```bash
 # 安装 daily-reporting
-cp daily-reporting/daily-reporting.md ~/.claude/skills/
+cp -r daily-reporting ~/.claude/skills/
 
 # 安装 project-deep-analyzer
 cp -r project-deep-analyzer ~/.claude/skills/
 ```
 
-2. 重启 Claude Code 使 skill 生效
+安装后请重启 Claude Code，使 Skills 生效。
 
----
+## 使用示例
 
-## 📖 使用指南
+### daily-reporting
 
-### daily-reporting Skill
-
-#### 功能概述
-
-自动分析项目文件夹，读取脚本、数据、日志等信息，生成结构化的markdown日报。
-
-#### 使用方式
-
-**方式1: 直接描述需求**
-```
+```text
 请为项目 "C:\Projects\MyProject" 生成日报
 ```
 
-**方式2: 指定项目路径**
-```
-使用日报生成功能，项目路径是 "C:\Projects\MyProject"
-```
-
-#### 日报结构
-
-生成的日报包含以下章节：
-
-```
-一、项目背景与需求
-   ├─ 1.1 业务背景
-   ├─ 1.2 核心需求
-   └─ 1.3 技术挑战
-
-二、解决方案
-   ├─ 2.1 系统架构
-   └─ 2.2 核心模块设计
-
-三、实施过程
-   ├─ 3.1 阶段1
-   ├─ 3.2 阶段2
-   └─ 3.3 阶段3
-
-四、结果呈现
-   ├─ 4.1 输出文件
-   ├─ 4.2 数据结构
-   └─ 4.3 数据分析报告
-
-五、技术亮点
-   ├─ 5.1 健壮性设计
-   ├─ 5.2 性能优化
-   └─ 5.3 可维护性
-
-六、交付清单
-   ├─ 6.1 代码交付
-   ├─ 6.2 数据交付
-   └─ 6.3 文档交付
-
-七、下一步计划
-   ├─ 7.1 短期计划
-   ├─ 7.2 中期计划
-   └─ 7.3 长期规划
-
-八、附录
-   ├─ 8.1 项目目录树
-   ├─ 8.2 关键指标
-   └─ 8.3 团队协作
+```text
+使用日报生成功能，项目路径是 "E:\Project\xxx"
 ```
 
----
+### project-deep-analyzer
 
-### project-deep-analyzer Skill
-
-#### 功能概述
-
-深度技术解析技能，生成结构化技术白皮书级别的 Markdown 文档。
-
-#### 使用方式
-
-**方式1: 提供 GitHub 链接**
-```
+```text
 分析这个项目：https://github.com/openai/whisper
 ```
 
-**方式2: 提供本地项目路径**
-```
+```text
 深度解析 E:/Project/my-model 这个项目
 ```
 
-**方式3: 结合 arXiv 论文**
-```
-分析 https://arxiv.org/abs/xxxxx 和对应的代码仓库
+```text
+分析 https://arxiv.org/abs/xxxxx 和对应代码仓库
 ```
 
-#### 输出结构
+## 输出结构
 
-```
+### daily-reporting 输出章节
+
+标准输出通常包含以下 8 部分：
+
+1. 项目背景与需求
+2. 解决方案
+3. 实施过程
+4. 结果呈现
+5. 技术亮点
+6. 交付清单
+7. 下一步计划
+8. 附录
+
+### project-deep-analyzer 输出模式
+
+| 模式 | 适用场景 | 典型产物 |
+|---|---|---|
+| 单文件 | 小型项目、快速交付 | `output/{project_name}_ANALYSIS.md` |
+| 模块化 | 大型项目、长期维护 | `00_OVERVIEW.md` + `01~05` 分章节文档 |
+
+典型分析维度：
+
 1. 论文精要与宏观架构
-   ├─ 核心思想
-   ├─ 数学原理（LaTeX 公式）
-   └─ 架构逻辑图（Mermaid）
-
 2. 核心源码深度剖析
-   ├─ 精选 2-3 个核心模块
-   └─ 逐行代码解析
-
-3. 工程实践：部署与训练
-   ├─ 环境与依赖
-   ├─ 快速推理
-   └─ 训练与微调
-
+3. 工程实践（部署与训练/推理）
 4. 技术复盘与演进
-   ├─ 优势亮点
-   ├─ 瓶颈与不足
-   └─ 改进方向
-
 5. 资深面试官 Q&A
-   └─ 5 个高阶问题与解答
-```
 
-#### 目录结构
+## 贡献指南
 
-```
-project-deep-analyzer/
-├── SKILL.md                          # 主技能文件
-├── references/
-│   ├── analysis-template.md          # 分析模板
-│   └── interview-patterns.md         # 面试问题模式库
-├── examples/
-│   └── single-file-output.md         # 输出示例
-└── scripts/
-    ├── clone_repo.py                 # Git 仓库克隆工具
-    └── analyze_structure.py          # 项目结构分析工具
-```
+欢迎提交新的 Skill 或改进现有 Skill。
 
----
+1. Fork 本仓库
+2. 新建或更新 Skill 目录
+3. 在 `README.md` 中补充说明与示例
+4. 提交 Pull Request
 
-## 🔧 技术支持
-
-### Skill 文件格式
-
-每个 skill 文件需要包含以下 frontmatter：
+建议每个 Skill 包含 frontmatter：
 
 ```yaml
 ---
@@ -212,28 +156,12 @@ tags: [标签1, 标签2, 标签3]
 ---
 ```
 
-### 贡献指南
-
-欢迎提交新的 skill！
-
-1. Fork 本仓库
-2. 创建新的 skill 文件
-3. 添加使用说明到 README
-4. 提交 Pull Request
-
----
-
-## 📄 License
+## License
 
 MIT License
 
----
+## 维护信息
 
-## 🤝 贡献者
-
-- goldzzmj
-
----
-
-**更新时间**: 2026-03-22
-**版本**: v1.1
+- 贡献者: `goldzzmj`
+- 更新时间: `2026-03-22`
+- 版本: `v1.2`
