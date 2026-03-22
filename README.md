@@ -6,7 +6,7 @@
 
 ### daily-reporting
 
-**文件**: `skills/daily-reporting.md`
+**文件**: `daily-reporting/daily-reporting.md`
 
 **功能**: 自动生成项目日报markdown文档
 
@@ -18,23 +18,51 @@
 
 ---
 
+### project-deep-analyzer
+
+**文件**: `project-deep-analyzer/SKILL.md`
+
+**功能**: 深度技术解析技能，用于快速理解并剖析任意项目或论文
+
+**用途**:
+- 分析 GitHub 仓库或本地项目
+- 生成结构化技术白皮书
+- 架构图（Mermaid）和代码深度解析
+- 专家级面试 Q&A
+
+**特性**:
+- 多源输入支持：GitHub 链接、本地项目路径、arXiv 论文链接
+- 智能文档生成：自动生成架构图、数学公式、代码解析
+- 灵活输出模式：单文件或模块化多文件输出
+- 专家视角分析：包含面试级 Q&A
+
+---
+
 ## 🚀 快速开始
 
 ### 安装 Skill
 
-1. 将 `skills/daily-reporting.md` 复制到你的Claude skills目录：
+1. 将 skill 文件夹复制到你的 Claude skills 目录：
 
 **Windows**:
 ```bash
-copy skills\daily-reporting.md %USERPROFILE%\.claude\skills\
+# 安装 daily-reporting
+copy daily-reporting\daily-reporting.md %USERPROFILE%\.claude\skills\
+
+# 安装 project-deep-analyzer
+xcopy /E /I project-deep-analyzer %USERPROFILE%\.claude\skills\project-deep-analyzer
 ```
 
 **Linux/Mac**:
 ```bash
-cp skills/daily-reporting.md ~/.claude/skills/
+# 安装 daily-reporting
+cp daily-reporting/daily-reporting.md ~/.claude/skills/
+
+# 安装 project-deep-analyzer
+cp -r project-deep-analyzer ~/.claude/skills/
 ```
 
-2. 重启Claude Code使skill生效
+2. 重启 Claude Code 使 skill 生效
 
 ---
 
@@ -103,60 +131,71 @@ cp skills/daily-reporting.md ~/.claude/skills/
    └─ 8.3 团队协作
 ```
 
-#### 数据提取能力
-
-| 数据源 | 提取内容 |
-|--------|----------|
-| 日志文件 | 执行时间、成功率、错误记录 |
-| 脚本文件 | 功能描述、代码片段、配置参数 |
-| 数据文件 | 数据结构、统计信息、分布分析 |
-| 配置文件 | 项目配置、环境设置 |
-
-#### 可视化特性
-
-自动生成ASCII字符绘制的条形图：
-
-```
-名称    数量   占比    可视化
-────────────────────────────────────────────
-黑色    90    47.1%    ████████████████████████████████████████████
-白色    23    12.1%    ██████████
-```
-
-#### 输出示例
-
-生成的日报文件命名格式：`日报_YYYY-MM-DD.md`
-
-保存位置：项目根目录
-
 ---
 
-## 📝 示例
+### project-deep-analyzer Skill
 
-### 示例1: 基础日报生成
+#### 功能概述
 
-**输入**:
+深度技术解析技能，生成结构化技术白皮书级别的 Markdown 文档。
+
+#### 使用方式
+
+**方式1: 提供 GitHub 链接**
 ```
-请为项目 "C:\Projects\AI_tagging" 生成日报
-```
-
-**输出**:
-- 在项目根目录生成 `日报_2026-02-26.md`
-- 包含项目背景、解决方案、实施过程等8个章节
-- 自动提取脚本功能、日志统计、数据分析
-
-### 示例2: 带数据分析的日报
-
-**输入**:
-```
-为当前项目生成日报，包含详细的数据统计分析
+分析这个项目：https://github.com/openai/whisper
 ```
 
-**输出**:
-- 完整的日报文档
-- 数据分布分析（材质、颜色、款式等）
-- 交叉分析（材质×颜色关联等）
-- 完整度评估和填充率统计
+**方式2: 提供本地项目路径**
+```
+深度解析 E:/Project/my-model 这个项目
+```
+
+**方式3: 结合 arXiv 论文**
+```
+分析 https://arxiv.org/abs/xxxxx 和对应的代码仓库
+```
+
+#### 输出结构
+
+```
+1. 论文精要与宏观架构
+   ├─ 核心思想
+   ├─ 数学原理（LaTeX 公式）
+   └─ 架构逻辑图（Mermaid）
+
+2. 核心源码深度剖析
+   ├─ 精选 2-3 个核心模块
+   └─ 逐行代码解析
+
+3. 工程实践：部署与训练
+   ├─ 环境与依赖
+   ├─ 快速推理
+   └─ 训练与微调
+
+4. 技术复盘与演进
+   ├─ 优势亮点
+   ├─ 瓶颈与不足
+   └─ 改进方向
+
+5. 资深面试官 Q&A
+   └─ 5 个高阶问题与解答
+```
+
+#### 目录结构
+
+```
+project-deep-analyzer/
+├── SKILL.md                          # 主技能文件
+├── references/
+│   ├── analysis-template.md          # 分析模板
+│   └── interview-patterns.md         # 面试问题模式库
+├── examples/
+│   └── single-file-output.md         # 输出示例
+└── scripts/
+    ├── clone_repo.py                 # Git 仓库克隆工具
+    └── analyze_structure.py          # 项目结构分析工具
+```
 
 ---
 
@@ -164,7 +203,7 @@ cp skills/daily-reporting.md ~/.claude/skills/
 
 ### Skill 文件格式
 
-每个skill文件需要包含以下frontmatter：
+每个 skill 文件需要包含以下 frontmatter：
 
 ```yaml
 ---
@@ -175,12 +214,12 @@ tags: [标签1, 标签2, 标签3]
 
 ### 贡献指南
 
-欢迎提交新的skill！
+欢迎提交新的 skill！
 
-1. Fork本仓库
-2. 创建新的skill文件
-3. 添加使用说明到README
-4. 提交Pull Request
+1. Fork 本仓库
+2. 创建新的 skill 文件
+3. 添加使用说明到 README
+4. 提交 Pull Request
 
 ---
 
@@ -196,5 +235,5 @@ MIT License
 
 ---
 
-**更新时间**: 2026-02-26
-**版本**: v1.0
+**更新时间**: 2026-03-22
+**版本**: v1.1
