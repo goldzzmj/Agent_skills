@@ -41,7 +41,7 @@ metadata:
       "command": ["npx", "-y", "comet-mcp"],
       "enabled": true,
       "environment": {
-        "COMET_PATH": "C:\\Users\\GX\\AppData\\Local\\Perplexity\\Comet\\Application\\comet.exe"
+        "COMET_PATH": "C:\\Path\\To\\Comet\\Application\\comet.exe"
       }
     }
   }
@@ -51,7 +51,7 @@ metadata:
 说明：
 
 - `COMET_PATH` 应优先写到 `comet.exe`
-- 如果你想改用另一份安装，也可以填 `F:\\Comet\\comet.exe`
+- 建议使用通用示例路径，避免把个人机器目录写入仓库
 - Windows 默认端口是 `9222`
 - WSL2 需要 mirrored networking，才能访问 Windows 上启动的 Comet
 

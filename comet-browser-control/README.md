@@ -16,17 +16,12 @@
 - 处理动态页面
 - 让浏览器自主跑一段时间再回报结果
 
-## 你当前环境的建议配置
+## 路径配置建议
 
-你已经有两个相关路径：
+按 `comet-mcp` 源码，`COMET_PATH` 最稳妥的写法是直接指向可执行文件。
 
-- `F:\Comet`
-- `C:\Users\GX\AppData\Local\Perplexity\Comet\Application`
-
-按 `comet-mcp` 源码，`COMET_PATH` 最稳妥的写法是直接指向可执行文件：
-
-- 推荐：`C:\Users\GX\AppData\Local\Perplexity\Comet\Application\comet.exe`
-- 备选：`F:\Comet\comet.exe`
+- 推荐写法：`C:\Path\To\Comet\Application\comet.exe`
+- 也可以使用你自己的自定义安装路径
 
 如果不写 `COMET_PATH`，Windows 下它会优先尝试 `%LOCALAPPDATA%\Perplexity\Comet\Application\comet.exe`。
 
@@ -43,7 +38,7 @@
       "command": ["npx", "-y", "comet-mcp"],
       "enabled": true,
       "environment": {
-        "COMET_PATH": "C:\\Users\\GX\\AppData\\Local\\Perplexity\\Comet\\Application\\comet.exe"
+        "COMET_PATH": "C:\\Path\\To\\Comet\\Application\\comet.exe"
       }
     }
   }
@@ -65,10 +60,10 @@ OpenCode 会自动发现这些目录中的 Skill：
 E:\Project\.opencode\skills\comet-browser-control\SKILL.md
 ```
 
-或：
+或全局目录：
 
 ```text
-C:\Users\GX\.config\opencode\skills\comet-browser-control\SKILL.md
+~/.config/opencode/skills/comet-browser-control/SKILL.md
 ```
 
 ## 最常见使用方式

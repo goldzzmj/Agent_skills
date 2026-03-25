@@ -21,6 +21,10 @@ Agent_skills/
 │  ├─ SKILL.md
 │  ├─ README.md
 │  └─ examples/
+├─ ltx-desktop-autocut/
+│  ├─ SKILL.md
+│  ├─ references/
+│  └─ scripts/
 ├─ project-deep-analyzer/
 │  ├─ SKILL.md
 │  ├─ references/
@@ -35,6 +39,7 @@ Agent_skills/
 |---|---|---|---|
 | `daily-reporting` | `daily-reporting/daily-reporting.md` | 自动生成结构化日报/周报 | 日常研发汇报、阶段性复盘、成果沉淀 |
 | `comet-browser-control` | `comet-browser-control/SKILL.md` | 通过 OpenCode + Comet MCP 执行浏览器任务 | 深度网页调研、登录墙处理、动态页面、浏览器截图 |
+| `ltx-desktop-autocut` | `ltx-desktop-autocut/SKILL.md` | 自动化整理素材并配合 LTX Desktop 导入导出 | 照片+BGM 卡点视频、桌面自动化剪辑、LTX 产物准备 |
 | `project-deep-analyzer` | `project-deep-analyzer/SKILL.md` | 深度解析代码仓库/论文并产出技术白皮书 | 技术调研、架构梳理、面试准备、知识库建设 |
 
 ### 1) daily-reporting
@@ -72,6 +77,18 @@ Agent_skills/
   - 内置 OpenCode MCP 配置模板
   - 面向 Windows / WSL 的 `COMET_PATH` 说明
   - 提供 `connect -> ask -> poll -> screenshot` 推荐工作流
+
+### 4) ltx-desktop-autocut
+
+- **定位**: 为 LTX Desktop 提供“素材预处理 + 桌面自动化导入导出”工作流。
+- **适用任务**:
+  - 把本地照片和本地音乐生成卡点视频
+  - 自动化控制 LTX Desktop 完成导入、截图、OCR、导出
+  - 生成更适合 LTX 使用的 ASCII 路径中间产物
+- **关键特点**:
+  - 优先外部预处理，减少在 LTX 内复杂拖拽
+  - 包含 OCR 与窗口恢复策略
+  - 附带脚本与参考工作流文档
 
 ## 快速安装
 
@@ -152,6 +169,16 @@ cp -r project-deep-analyzer ~/.claude/skills/
 用 Comet 打开目标页面，完成后截图并告诉我当前页面状态。
 ```
 
+### ltx-desktop-autocut
+
+```text
+使用 LTX Desktop 自动剪辑视频，把照片和本地音乐整理成适合导入的成片。
+```
+
+```text
+帮我生成 LTX-ready 视频资产，并尽量自动化完成导入和导出。
+```
+
 ## 输出结构
 
 ### daily-reporting 输出章节
@@ -208,4 +235,4 @@ MIT License
 
 - 贡献者: `goldzzmj`
 - 更新时间: `2026-03-26`
-- 版本: `v1.3`
+- 版本: `v1.4`

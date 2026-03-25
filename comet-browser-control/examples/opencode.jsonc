@@ -7,7 +7,7 @@
       "enabled": true,
       "timeout": 10000,
       "environment": {
-        "COMET_PATH": "C:\\Users\\GX\\AppData\\Local\\Perplexity\\Comet\\Application\\comet.exe"
+        "COMET_PATH": "C:\\Path\\To\\Comet\\Application\\comet.exe"
       }
     }
   },
